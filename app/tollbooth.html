@@ -1,0 +1,25 @@
+Navigation:<br>
+<button class="btn btn-default" ng-click="goto('/regulator')">Regulator</button>
+<button class="btn btn-default" ng-click="goto('/operator/'+operatorAddress)">Operator</button>
+<button class="btn btn-default" ng-click="goto('/vehicle/'+operatorAddress)">Vehicle</button>
+<button class="btn btn-default" ng-click="goto('/tollbooth/'+operatorAddress)">TollBooth</button>
+<h1>Toll Booth</h1>
+Operator Address: {{operatorAddress}}<br>
+Current Account (tollbooth): {{tollboothAddress}}
+<div class="row" ng-show="!operatorAddress">
+        <div class="col-xs-6">
+            <label>Operator Address</label>
+            <input type="text" class="form-control" ng-model="operatorAddressInput" placeholder="0x1234..."><br>
+            <button class="btn btn-primary" ng-click="getOperator(operatorAddressInput)">Get Operator</button>
+        </div>
+    </div>
+<div class="row" ng-show="operatorAddress">     
+    <div class="col-xs-4">
+        <h3>Report Exit Road</h3>
+        <label>Exit Secret</label>
+        <input type="text" class='form-control' ng-model="exitSecret" placeholder="secret"><br>
+        <button class='btn btn-primary' ng-click="exitRoad(exitSecret)">Report Exit</button><br><br>
+        <div class="alert alert-success" role="alert" ng-show="exitSuccess">{{exitSuccessMessage}}</div>
+        <div class="alert alert-danger" role="alert" ng-show="exitError">Something went wrong with vehicle exit.</div>
+    </div>
+</div>

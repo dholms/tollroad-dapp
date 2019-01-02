@@ -1,0 +1,49 @@
+Navigation:<br>
+<button class="btn btn-default" ng-click="goto('/regulator')">Regulator</button>
+<button class="btn btn-default" ng-click="goto('/operator/'+operatorAddress)">Operator</button>
+<button class="btn btn-default" ng-click="goto('/vehicle/'+operatorAddress)">Vehicle</button>
+<button class="btn btn-default" ng-click="goto('/tollbooth/'+operatorAddress)">TollBooth</button>
+<h1>Vehicle</h1>
+Operator Address: {{operatorAddress}}<br>
+Current Account(vehicle): {{accountAddress}}<br>
+Balance: {{accountBalance}} ETH
+<div class="row" ng-show="!operatorAddress">
+        <div class="col-xs-6">
+            <label>Operator Address</label>
+            <input type="text" class="form-control" ng-model="operatorAddressInput" placeholder="0x1234..."><br>
+            <button class="btn btn-primary" ng-click="getOperator(operatorAddressInput)">Get Operator</button>
+        </div>
+    </div>
+<div class="row" ng-show="operatorAddress">     
+    <div class="col-xs-4">
+        <!-- ADD DEPOSIT AMOUN -->
+        <h3>Enter Toll Booth</h3>
+        <label>Entry Booth</label>
+        <input type="text" class='form-control' ng-model="entryBooth" placeholder="0x1234..."><br>
+        <label>Exit Secret Hashed</label>
+        <input type="text" class='form-control' ng-model="exitSecretHashed" placeholder="0x1b2a3d..."><br>
+        <label>Deposit Amount</label>
+        <div class="input-group">
+                <input type="text" class='form-control' ng-model="depositAmount" placeholder="200"><br>
+            <span class="input-group-addon">wei</span>
+        </div><br>        
+        <button class='btn btn-primary' ng-click="enterTollBooth(entryBooth, exitSecretHashed, depositAmount)">Enter Toll Booth</button><br><br>
+        <div class="alert alert-success" role="alert" ng-show="enterTollBoothSuccess">Successfully entered road at toll booth.</div>
+        <div class="alert alert-danger" role="alert" ng-show="enterTollBoothError">Something went wrong when entering at the toll booth.</div>
+    </div>
+    <div class="col-xs-4">
+        <h3>Vehicle History</h3>
+        <div ng-repeat="item in history">
+            Entry: {{item.entry}}<br>
+            Exit: {{item.exit}}<br>
+            <hr>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <h3>Hash Secret</h3>
+        <label>Exit Secret</label>
+        <input type="text" class='form-control' ng-model="exitSecret" placeholder="secret"><br>
+        <button class='btn btn-primary' ng-click="hashSecret(exitSecret)">Get Hash</button><br>
+        {{hashedSecret}}
+    </div>
+</div>

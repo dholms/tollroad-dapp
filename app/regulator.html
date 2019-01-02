@@ -1,0 +1,40 @@
+Navigation: Choose an Operator from "Current Operators"<br>
+
+<h1>Regulator</h1>
+Current Account: {{accountAddress}}
+<div class="row">
+  <div class="col-xs-4">
+    <h3>Add Vehicle Type</h3>
+    <label>Vehicle address</label>
+    <input type="text" class='form-control' ng-model="vehicleAddress" placeholder="0x1234..."><br>
+    <label>Vehicle Type</label>
+    <input type="number" class='form-control' ng-model="vehicleType" placeholder="1"><br>
+    <button class='btn btn-primary' ng-click="addVehicle(vehicleAddress, vehicleType)">Add Vehicle</button><br><br>
+    <div class="alert alert-success" role="alert" ng-show="addVehicleSuccess">Vehicle successfully added.</div>
+    <div class="alert alert-danger" role="alert" ng-show="addVehicleError">Something went wrong when adding the vehicle.</div>
+  </div>
+  <div class="col-xs-4">
+    <h3>Create Operator</h3>
+    <label>Operator owner</label>
+    <input type="text" class='form-control' ng-model="operatorOwner" placeholder="0x1234..."><br>
+    <label>Base Deposit</label>
+    <div class="input-group">
+        <input type="number" class='form-control' ng-model="operatorDeposit" placeholder="50">
+        <span class="input-group-addon">wei</span>
+    </div><br>
+    <button class='btn btn-primary' ng-click="createNewOperator(operatorOwner, operatorDeposit)">Create Operator</button><br><br>
+    <div class="alert alert-success" role="alert" ng-show="newOperatorSuccess">New operator successfully created.</div>
+    <div class="alert alert-danger" role="alert" ng-show="newOperatorError">Something went wrong when creating a new operator.</div>
+  </div>
+  <div class="col-xs-4">
+    <h3>Current Operators</h3>
+    <div ng-repeat="operator in operators">
+        <a ng-click="goto('/operator/'+operator)">{{operator}}</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+
+  </div>
+</div>

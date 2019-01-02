@@ -1,0 +1,53 @@
+Navigation:<br>
+<button class="btn btn-default" ng-click="goto('/regulator')">Regulator</button>
+<button class="btn btn-default" ng-click="goto('/operator/'+operatorAddress)">Operator</button>
+<button class="btn btn-default" ng-click="goto('/vehicle/'+operatorAddress)">Vehicle</button>
+<button class="btn btn-default" ng-click="goto('/tollbooth/'+operatorAddress)">TollBooth</button>
+<h1>Operator</h1>
+Current Account: {{accountAddress}}
+<div class="row" ng-show="!operatorAddress">
+    <div class="col-xs-6">
+        <label>Operator Address</label>
+        <input type="text" class="form-control" ng-model="operatorAddressInput" placeholder="0x1234..."><br>
+        <button class="btn btn-primary" ng-click="getOperator(operatorAddressInput)">Get Operator</button>
+    </div>
+</div>
+<div class="row" ng-show="operatorAddress">    
+    <div class="col-xs-12">
+        Current Operator: {{operatorAddress}}<br>
+        Paused: {{isPaused}} <button class="btn btn-sm btn-primary" ng-click="setPause(true)" ng-show="!isPaused">Pause</button><button class="btn btn-sm btn-primary" ng-click="setPause(false)" ng-show="isPaused">Unpause</button> <br>        
+    </div>
+    <div class="col-xs-4">
+        <h3>Add Toll Booth</h3>
+        <label>Toll Booth Address</label>
+        <input type="text" class="form-control" ng-model="newTollBoothAddress" placeholder="0x1234..."><br>
+        <button class="btn btn-primary" ng-click="addTollBooth(newTollBoothAddress)">Add Toll Booth</button><br><br>
+        <div class="alert alert-success" role="alert" ng-show="addTollBoothSuccess">Toll booth successfully added.</div>
+    <div class="alert alert-danger" role="alert" ng-show="addTollBoothError">Something went wrong when adding the toll booth.</div>
+    </div>
+    <div class="col-xs-4">
+        <h3>Set Base Route Price</h3>
+        <label>Entry Booth</label>
+        <input type="text" class="form-control" ng-model="entryBooth" placeholder="0x1234..."><br>
+        <label>Exit Booth</label>
+        <input type="text" class="form-control" ng-model="exitBooth" placeholder="0x1234..."><br>
+        <label>Price</label>
+        <div class="input-group">
+            <input type="number" class='form-control' ng-model="routePrice" placeholder="50">
+            <span class="input-group-addon">wei</span>
+        </div><br>
+        <button class="btn btn-primary" ng-click="setBaseRoutePrice(entryBooth, exitBooth, routePrice)">Add Price</button><br><br>
+        <div class="alert alert-success" role="alert" ng-show="setPriceSuccess">Price successfully set.</div>
+    <div class="alert alert-danger" role="alert" ng-show="setPriceError">Something went wrong when setting the price.</div>
+    </div>
+    <div class="col-xs-4">
+        <h3>Set Multiplier</h3>
+        <label>Vehicle Type</label>
+        <input type="number" class="form-control" ng-model="vehicleType" placeholder="1"><br>
+        <label>Multiplier</label>
+        <input type="number" class="form-control" ng-model="multiplier" placeholder="50"><br>
+        <button class="btn btn-primary" ng-click="setMultiplier(vehicleType, multiplier)">Set Multiplier</button><br><br>
+        <div class="alert alert-success" role="alert" ng-show="setMultiplierSuccess">Multiplier successfully set.</div>
+    <div class="alert alert-danger" role="alert" ng-show="setMultiplierError">Something went wrong when setting the multiplier.</div>
+    </div>
+</div>
